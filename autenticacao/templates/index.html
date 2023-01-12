@@ -1,4 +1,10 @@
-<h1>Cadastro</h1>
-<h1>{{pessoa.nome}}</h1>
-<h1>{{pessoa.idade}}</h1>
-<h1>{{pessoa.profissao}}</h1>
+{% block 'conteudo'%}
+
+<form method="GET" action="{% url 'valida_formulario' %}">
+    <input type="text" placeholder="Nome..." name="nome">
+    <input type="email" placeholder="Email..." name="email">
+    <input type="submit">
+
+</form>
+
+{% endblock %}
