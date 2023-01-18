@@ -3,10 +3,13 @@ from django.http import HttpResponse
 import json
 
 def cadastro(request):
-    return render(request, 'index.html')
+    if request.method == "GET":
+        return render(request, 'index.html')
 
-def valida_formulario(request):
-    nome = request.GET.get('nome')
-    email = request.GET.get('email')
-    return HttpResponse(json.dumps({'nome': nome, 'email': email}))
+    elif request.method == "POST":
+        nome = request.POST.get('nome')
+        email = request.POST.get('email')
+        senha = request.POST.get('senha')
+        return HttpResponse(json.dumps({'nome': nome, 'email': email, 'senha': senha}))
+        
     
