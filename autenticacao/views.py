@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 import json
+from .models import Usuario
 
 def cadastro(request):
     if request.method == "GET":
@@ -10,6 +11,9 @@ def cadastro(request):
         nome = request.POST.get('nome')
         email = request.POST.get('email')
         senha = request.POST.get('senha')
-        return HttpResponse(json.dumps({'nome': nome, 'email': email, 'senha': senha}))
+        usuario = Usuario(nome = nome,
+                          email = email,
+                          senha = senha)
+
+        usuario.save()
         
-    
