@@ -16,4 +16,7 @@ def cadastro(request):
                           senha = senha)
 
         usuario.save()
-        
+
+def listar(request):
+    usuarios = Usuario.objects.all()
+    return render(request, "listar.html", {'usuarios' : usuarios})
