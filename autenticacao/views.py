@@ -18,5 +18,9 @@ def cadastro(request):
         usuario.save()
 
 def listar(request):
-    usuarios = Usuario.objects.all().exclude(name = joao)
+    dados = Usuario.objects.all()[0]
+    dados.nome = "Novo nome"
+    dados.save()
+
+    usuarios = Usuario.objects.all()
     return render(request, "listar.html", {'usuarios' : usuarios})
