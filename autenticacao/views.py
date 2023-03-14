@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 import json
-from .models import Usuario
+from .models import Usuario, Cargos
 
 def cadastro(request):
     if request.method == "GET":
@@ -18,9 +18,19 @@ def cadastro(request):
         usuario.save()
 
 def listar(request):
-    dados = Usuario.objects.all()[0]
-    dados.nome = "Novo nome"
-    dados.save()
+    if len(request.GET) != 0:
+        nome = request.GET.get('nome')
+        email = request.GET.get('email')
+        senha = request.GET.get('senha')
+
+        cargo = Cargos.objects.filter(nome = 'cliente')[0]
+
+        pessoa = Usuario(nome = nome,
+                         email = email,
+                         senha = senha,
+                         cargo = cargo)
+        pessoa.save()
+
 
     usuarios = Usuario.objects.all()
     return render(request, "listar.html", {'usuarios' : usuarios})
