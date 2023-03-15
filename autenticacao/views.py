@@ -23,7 +23,7 @@ def listar(request):
         email = request.GET.get('email')
         senha = request.GET.get('senha')
 
-        cargo = Cargos.objects.filter(nome = 'cliente')[0]
+        cargo = Cargos.objects.get(id=1)
 
         pessoa = Usuario(nome = nome,
                          email = email,
