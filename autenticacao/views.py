@@ -18,11 +18,8 @@ def cadastro(request):
         usuario.save()
 
 def listar(request):
-   cargo = Cargos.objects.get(id = 1)
-
-   usuarios = Usuario.objects.get(id = 12)
-   usuarios.cargo.add(cargo)
-   usuarios.save()
-
    usuarios = Usuario.objects.all()
    return render(request, "listar/listar.html", {'usuarios' : usuarios})
+
+
+def listar_unico(request):
