@@ -18,19 +18,11 @@ def cadastro(request):
         usuario.save()
 
 def listar(request):
-    if len(request.GET) != 0:
-        nome = request.GET.get('nome')
-        email = request.GET.get('email')
-        senha = request.GET.get('senha')
+   cargo = Cargos.objects.get(id = 1)
 
-        cargo = Cargos.objects.get(id=1)
+   usuarios = Usuario.objects.get(id = 12)
+   usuarios.cargo.add(cargo)
+   usuarios.save()
 
-        pessoa = Usuario(nome = nome,
-                         email = email,
-                         senha = senha,
-                         cargo = cargo)
-        pessoa.save()
-
-
-    usuarios = Usuario.objects.all()
-    return render(request, "listar.html", {'usuarios' : usuarios})
+   usuarios = Usuario.objects.all()
+   return render(request, "listar/listar.html", {'usuarios' : usuarios})
