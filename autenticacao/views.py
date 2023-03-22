@@ -22,4 +22,7 @@ def listar(request):
    return render(request, "listar/listar.html", {'usuarios' : usuarios})
 
 
-def listar_unico(request):
+def listar_unico(request, id):
+    usuario = Usuario.objects.filter(id = id)
+    return render(request, 'listar/listar.html', {'usuarios': usuario})
+
