@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_list_or_404
 from django.http import HttpResponse
 import json
 from .models import Usuario, Cargos
@@ -23,6 +23,6 @@ def listar(request):
 
 
 def listar_unico(request, id):
-    usuario = Usuario.objects.filter(id = id)
+    usuario = get_list_or_404(Usuario, id = id)
     return render(request, 'listar/listar.html', {'usuarios': usuario})
 
